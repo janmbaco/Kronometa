@@ -1,0 +1,193 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.panel {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0.95rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-card);
+  box-shadow: var(--km-shadow-soft);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.head span {
+  display: inline-flex;
+  min-width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-surface-2);
+  color: var(--km-muted-strong);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  margin: 0 0 0.2rem;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h2,
+.empty {
+  margin: 0;
+}
+
+h2 {
+  color: var(--km-heading);
+  font-size: 1.18rem;
+}
+
+.table-scroll {
+  overflow: hidden;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-card);
+}
+
+.result-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  color: var(--km-text);
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.6rem 0.7rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--km-border);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+thead th {
+  color: var(--km-muted-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  background: var(--km-surface-2);
+  text-transform: uppercase;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr.leader td {
+  background: var(--km-leader-bg);
+  font-weight: 800;
+}
+
+tbody tr:hover td {
+  background: var(--km-accent-softer);
+}
+
+td:nth-child(4),
+td:nth-child(5) {
+  font-family: var(--km-font-mono);
+}
+
+pick-for {
+  display: contents;
+}
+
+.empty {
+  padding: 0.9rem;
+  border: 1px dashed var(--km-border);
+  border-radius: var(--km-radius);
+  color: var(--km-muted);
+  background: var(--km-surface-2);
+}
+
+@media (max-width: 680px) {
+  .table-scroll {
+    border: 0;
+    overflow: visible;
+  }
+
+  .result-table,
+  .result-table thead,
+  .result-table tbody,
+  .result-table tr,
+  .result-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .result-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .result-table tbody {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .result-table tr {
+    box-sizing: border-box;
+    padding: 0.75rem;
+    border: 1px solid var(--km-border);
+    border-radius: var(--km-radius);
+    background: var(--km-surface-2);
+  }
+
+  .result-table tr.leader {
+    border-color: var(--km-success);
+    background: var(--km-leader-bg);
+  }
+
+  .result-table td {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    border: 0;
+    white-space: normal;
+  }
+
+  .result-table td::before {
+    color: var(--km-muted);
+    font-weight: 800;
+  }
+
+  .result-table td:nth-child(1)::before {
+    content: "Pos.";
+  }
+
+  .result-table td:nth-child(2)::before {
+    content: "Dorsal";
+  }
+
+  .result-table td:nth-child(3)::before {
+    content: "Nombre";
+  }
+
+  .result-table td:nth-child(4)::before {
+    content: "Tiempo";
+  }
+
+  .result-table td:nth-child(5)::before {
+    content: "Diferencia";
+  }
+}

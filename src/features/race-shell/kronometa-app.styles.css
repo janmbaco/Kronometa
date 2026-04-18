@@ -1,0 +1,121 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.app-shell {
+  width: min(1120px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 1.15rem 0 2.25rem;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.6fr);
+  gap: var(--km-gap-lg);
+  align-items: end;
+  padding: 0.85rem 0 1rem;
+  border-bottom: 1px solid var(--km-border);
+}
+
+.eyebrow {
+  margin: 0 0 0.28rem;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--km-heading);
+  font-size: clamp(2.15rem, 5vw, 3.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.status {
+  max-width: 30rem;
+  margin: 0;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--km-border);
+  border-radius: 999px;
+  background: var(--km-surface-2);
+  justify-self: end;
+  color: var(--km-muted);
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: right;
+}
+
+.flow-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.28rem;
+  margin-top: 1rem;
+  padding: 0.35rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-surface-2);
+}
+
+.flow-steps span {
+  display: inline-flex;
+  min-height: 2.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--km-radius-sm);
+  background: transparent;
+  color: var(--km-muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.flow-steps span.active {
+  border-color: var(--km-primary);
+  background: var(--km-card-selected);
+  color: var(--km-primary-strong);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--km-primary) 18%, transparent);
+}
+
+pick-router {
+  display: block;
+  min-width: 0;
+  margin-top: 1rem;
+}
+
+.router-outlet {
+  display: block;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+  gap: var(--km-gap-md);
+  align-items: start;
+}
+
+@media (max-width: 920px) {
+  .app-header {
+    grid-template-columns: 1fr;
+  }
+
+  .status {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    width: min(100vw - 1rem, 1120px);
+    padding-top: 0.7rem;
+  }
+
+  .flow-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

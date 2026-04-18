@@ -1,0 +1,271 @@
+@import "./styles/pico.min.css";
+
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --km-bg: #f1f5f9;
+  --km-surface: #f8fafc;
+  --km-surface-2: #eef3f8;
+  --km-surface-3: #e2e8f0;
+  --km-card: #f8fafc;
+  --km-card-selected: #e6f7fb;
+  --km-border: #d5dee8;
+  --km-border-strong: #a8b7c7;
+  --km-text: #243244;
+  --km-text-muted: #64748b;
+  --km-text-soft: #475569;
+  --km-heading: #0f172a;
+  --km-accent: #0891b2;
+  --km-accent-hover: #0e7490;
+  --km-accent-strong: var(--km-accent-hover);
+  --km-accent-contrast: #f8fafc;
+  --km-accent-soft: #d8f3f8;
+  --km-accent-softer: #ecfbfe;
+  --km-success: #059669;
+  --km-success-soft: #dff7eb;
+  --km-warning: #d97706;
+  --km-warning-soft: #fef1cf;
+  --km-danger: #dc2626;
+  --km-danger-strong: #b91c1c;
+  --km-danger-soft: #fee2df;
+  --km-focus: rgba(8, 145, 178, 0.34);
+  --km-runner-pending: var(--km-warning);
+  --km-runner-pending-bg: #fff8e6;
+  --km-runner-running: var(--km-accent);
+  --km-runner-running-bg: var(--km-card-selected);
+  --km-runner-finished: var(--km-success);
+  --km-runner-finished-bg: var(--km-success-soft);
+  --km-leader-bg: var(--km-success-soft);
+  --km-disabled-bg: var(--km-surface-2);
+  --km-disabled-text: var(--km-text-muted);
+  --km-radius: 7px;
+  --km-radius-sm: 6px;
+  --km-gap-xs: 0.35rem;
+  --km-gap-sm: 0.6rem;
+  --km-gap-md: 1rem;
+  --km-gap-lg: 1.4rem;
+  --km-shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --km-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --km-surface-1: var(--km-surface);
+  --km-panel: var(--km-surface-2);
+  --km-card-muted: var(--km-surface-3);
+  --km-muted: var(--km-text-muted);
+  --km-muted-strong: var(--km-text-soft);
+  --km-primary: var(--km-accent);
+  --km-primary-strong: var(--km-accent-hover);
+  --km-on-primary: var(--km-accent-contrast);
+  --km-primary-soft: var(--km-accent-soft);
+  --km-primary-softer: var(--km-accent-softer);
+
+  --pico-border-radius: var(--km-radius);
+  --pico-background-color: var(--km-bg);
+  --pico-card-background-color: var(--km-card);
+  --pico-card-border-color: var(--km-border);
+  --pico-card-box-shadow: var(--km-shadow-soft);
+  --pico-card-sectioning-background-color: var(--km-surface-2);
+  --pico-color: var(--km-text);
+  --pico-muted-color: var(--km-text-muted);
+  --pico-muted-border-color: var(--km-border);
+  --pico-primary: var(--km-accent);
+  --pico-primary-background: var(--km-accent);
+  --pico-primary-border: var(--km-accent);
+  --pico-primary-hover: var(--km-accent-strong);
+  --pico-primary-hover-background: var(--km-accent-strong);
+  --pico-primary-hover-border: var(--km-accent-strong);
+  --pico-primary-focus: var(--km-focus);
+  --pico-primary-inverse: var(--km-accent-contrast);
+  --pico-secondary: var(--km-text-soft);
+  --pico-secondary-background: var(--km-card);
+  --pico-secondary-border: var(--km-border-strong);
+  --pico-secondary-hover: var(--km-accent-hover);
+  --pico-secondary-hover-background: var(--km-surface-3);
+  --pico-secondary-hover-border: var(--km-accent);
+  --pico-secondary-focus: var(--km-focus);
+  --pico-contrast: var(--km-danger);
+  --pico-contrast-background: transparent;
+  --pico-contrast-border: var(--km-danger);
+  --pico-contrast-hover: var(--km-danger-strong);
+  --pico-contrast-hover-background: var(--km-danger-soft);
+  --pico-contrast-hover-border: var(--km-danger-strong);
+  --pico-form-element-background-color: var(--km-card);
+  --pico-form-element-border-color: var(--km-border);
+  --pico-form-element-color: var(--km-text);
+  --pico-form-element-placeholder-color: var(--km-text-muted);
+  --pico-form-element-active-background-color: var(--km-card);
+  --pico-form-element-active-border-color: var(--km-accent);
+  --pico-form-element-focus-color: var(--km-focus);
+  --pico-form-element-disabled-opacity: 0.68;
+  --pico-form-element-spacing-vertical: 0.62rem;
+  --pico-form-element-spacing-horizontal: 0.78rem;
+  --pico-table-border-color: var(--km-border);
+  --pico-table-row-stripped-background-color: var(--km-surface-2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :root[data-theme="auto"] {
+    color-scheme: dark;
+
+    --km-bg: #0f172a;
+    --km-surface: #121d2f;
+    --km-surface-2: #172235;
+    --km-surface-3: #213047;
+    --km-card: #162235;
+    --km-card-selected: #0d3340;
+    --km-border: #2a3a51;
+    --km-border-strong: #435670;
+    --km-text: #dce7f3;
+    --km-text-muted: #94a3b8;
+    --km-text-soft: #c4d0df;
+    --km-heading: #f8fafc;
+    --km-accent: #22d3ee;
+    --km-accent-hover: #67e8f9;
+    --km-accent-strong: var(--km-accent-hover);
+    --km-accent-contrast: #07141f;
+    --km-accent-soft: #123948;
+    --km-accent-softer: #102b39;
+    --km-success: #34d399;
+    --km-success-soft: #123b31;
+    --km-warning: #f59e0b;
+    --km-warning-soft: #422f12;
+    --km-danger: #f87171;
+    --km-danger-strong: #fca5a5;
+    --km-danger-soft: #4a1f24;
+    --km-focus: rgba(34, 211, 238, 0.36);
+    --km-runner-pending: var(--km-warning);
+    --km-runner-pending-bg: #1c2537;
+    --km-runner-running: var(--km-accent);
+    --km-runner-running-bg: var(--km-card-selected);
+    --km-runner-finished: var(--km-success);
+    --km-runner-finished-bg: var(--km-success-soft);
+    --km-leader-bg: var(--km-success-soft);
+    --km-disabled-bg: var(--km-surface-2);
+    --km-disabled-text: #718096;
+    --km-shadow-soft: 0 1px 2px rgba(2, 6, 23, 0.28);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --km-bg: #0f172a;
+  --km-surface: #121d2f;
+  --km-surface-2: #172235;
+  --km-surface-3: #213047;
+  --km-card: #162235;
+  --km-card-selected: #0d3340;
+  --km-border: #2a3a51;
+  --km-border-strong: #435670;
+  --km-text: #dce7f3;
+  --km-text-muted: #94a3b8;
+  --km-text-soft: #c4d0df;
+  --km-heading: #f8fafc;
+  --km-accent: #22d3ee;
+  --km-accent-hover: #67e8f9;
+  --km-accent-strong: var(--km-accent-hover);
+  --km-accent-contrast: #07141f;
+  --km-accent-soft: #123948;
+  --km-accent-softer: #102b39;
+  --km-success: #34d399;
+  --km-success-soft: #123b31;
+  --km-warning: #f59e0b;
+  --km-warning-soft: #422f12;
+  --km-danger: #f87171;
+  --km-danger-strong: #fca5a5;
+  --km-danger-soft: #4a1f24;
+  --km-focus: rgba(34, 211, 238, 0.36);
+  --km-runner-pending: var(--km-warning);
+  --km-runner-pending-bg: #1c2537;
+  --km-runner-running: var(--km-accent);
+  --km-runner-running-bg: var(--km-card-selected);
+  --km-runner-finished: var(--km-success);
+  --km-runner-finished-bg: var(--km-success-soft);
+  --km-leader-bg: var(--km-success-soft);
+  --km-disabled-bg: var(--km-surface-2);
+  --km-disabled-text: #718096;
+  --km-shadow-soft: 0 1px 2px rgba(2, 6, 23, 0.28);
+}
+
+html {
+  min-width: 320px;
+  background: var(--km-bg);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--km-bg);
+  color: var(--km-text);
+  font-feature-settings: "tnum" 0;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  color-scheme: inherit;
+  border-radius: var(--km-radius);
+}
+
+input,
+select,
+textarea {
+  background-color: var(--pico-form-element-background-color);
+  border-color: var(--pico-form-element-border-color);
+  color: var(--pico-form-element-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--pico-form-element-placeholder-color);
+  opacity: 1;
+}
+
+button {
+  min-height: 2.45rem;
+  font-weight: 700;
+}
+
+button.secondary {
+  color: var(--km-text-soft);
+  background: var(--km-card);
+  border-color: var(--km-border-strong);
+}
+
+button.contrast {
+  color: var(--km-danger);
+  background: transparent;
+  border-color: var(--km-danger);
+}
+
+:disabled,
+[disabled] {
+  opacity: 0.68;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--km-focus);
+  outline-offset: 2px;
+}
+
+table th,
+table td {
+  white-space: nowrap;
+}
+
+::selection {
+  background: var(--km-accent-soft);
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 0.96rem;
+  }
+}

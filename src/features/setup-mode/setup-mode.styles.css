@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.screen {
+  display: grid;
+  max-width: 920px;
+  gap: 0.95rem;
+}
+
+.intro,
+.actions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.intro {
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  color: var(--km-heading);
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+p {
+  color: var(--km-muted);
+}
+
+.actions {
+  justify-items: start;
+  padding-top: 0.25rem;
+}
+
+button {
+  width: auto;
+  min-height: 2.35rem;
+  margin: 0;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--km-primary);
+  border-radius: var(--km-radius);
+  background: var(--km-primary);
+  color: var(--km-on-primary);
+  font-weight: 800;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--km-primary-strong);
+  background: var(--km-primary-strong);
+}
+
+button:disabled {
+  border-color: var(--km-border);
+  background: var(--km-disabled-bg);
+  color: var(--km-disabled-text);
+  opacity: 0.68;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--km-focus);
+  outline-offset: 2px;
+}
+
+pick-action {
+  display: contents;
+}
+
+small {
+  min-height: 1.2rem;
+  color: var(--km-muted);
+}

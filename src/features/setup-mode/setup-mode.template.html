@@ -1,0 +1,18 @@
+<section class="screen">
+  <div class="intro">
+    <p class="eyebrow">Paso 1</p>
+    <h2>Elige el tipo de salida</h2>
+    <p>
+      Define si todos comparten salida o si cada corredor tendrá su propio inicio.
+    </p>
+  </div>
+
+  <race-mode-selector mode="{{mode}}" canchange="true"></race-mode-selector>
+
+  <footer class="actions">
+    <pick-action action="requestContinue">
+      <button type="button">Continuar con corredores</button>
+    </pick-action>
+    <small role="status">{{feedback}}</small>
+  </footer>
+</section>

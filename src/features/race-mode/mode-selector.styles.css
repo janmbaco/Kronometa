@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.mode-panel {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0.95rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-card);
+  box-shadow: var(--km-shadow-soft);
+}
+
+.panel-head {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  color: var(--km-heading);
+  font-size: 1.2rem;
+}
+
+.mode-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.mode-card {
+  display: grid;
+  min-height: 10.4rem;
+  width: 100%;
+  gap: 0.45rem;
+  align-content: start;
+  margin: 0;
+  padding: 0.95rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-surface-2);
+  color: var(--km-text);
+  text-align: left;
+  box-shadow: none;
+}
+
+.mode-card:hover:not(:disabled) {
+  border-color: var(--km-primary);
+  background: var(--km-accent-softer);
+}
+
+.mode-card:focus-visible {
+  outline: 3px solid var(--km-focus);
+  outline-offset: 2px;
+}
+
+.mode-card.selected {
+  border-color: var(--km-primary);
+  background: var(--km-card-selected);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--km-primary) 24%, transparent);
+}
+
+.mode-card.locked {
+  opacity: 0.7;
+}
+
+.mode-card strong {
+  color: var(--km-heading);
+  font-size: 1.28rem;
+  line-height: 1.05;
+}
+
+.mode-card span:not(.mode-kicker) {
+  color: var(--km-text-soft);
+  line-height: 1.35;
+}
+
+.mode-kicker {
+  width: fit-content;
+  padding: 0.16rem 0.45rem;
+  border: 1px solid var(--km-border);
+  border-radius: 999px;
+  background: var(--km-card);
+  color: var(--km-muted-strong);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.mode-card.selected .mode-kicker {
+  border-color: var(--km-primary);
+  background: var(--km-accent-soft);
+  color: var(--km-primary-strong);
+}
+
+small {
+  color: var(--km-muted);
+}
+
+.sr-only {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  position: absolute;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .mode-options {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-card {
+    min-height: auto;
+  }
+}

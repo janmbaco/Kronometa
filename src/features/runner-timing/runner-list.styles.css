@@ -1,0 +1,69 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.panel {
+  display: grid;
+  min-width: 0;
+  gap: 0.9rem;
+  padding: 0.95rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-card);
+  box-shadow: var(--km-shadow-soft);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.head span {
+  display: inline-flex;
+  min-width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-surface-2);
+  color: var(--km-muted-strong);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  margin: 0 0 0.2rem;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h2,
+.empty {
+  margin: 0;
+}
+
+h2 {
+  color: var(--km-heading);
+  font-size: 1.18rem;
+}
+
+.rows {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.empty {
+  padding: 0.9rem;
+  border: 1px dashed var(--km-border);
+  border-radius: var(--km-radius);
+  color: var(--km-muted);
+  background: var(--km-surface-2);
+}

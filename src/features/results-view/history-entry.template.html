@@ -1,0 +1,40 @@
+<article class="history-card">
+  <header class="history-card-head">
+    <div>
+      <strong>{{entry.completedAtLabel}}</strong>
+      <small>{{entry.modeLabel}} · {{entry.runnerCountLabel}}</small>
+    </div>
+    <div class="winner">
+      <span>{{entry.bestTimeLabel}}</span>
+      <small>{{entry.winnerLabel}}</small>
+    </div>
+  </header>
+
+  <details>
+    <summary>Ver clasificacion guardada</summary>
+    <div class="history-table-wrap">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th scope="col">Pos.</th>
+            <th scope="col">Dorsal</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tiempo</th>
+            <th scope="col">Diferencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <pick-for items="{{entry.results}}" key="runnerId">
+            <tr class="{{$item.rowClass}}">
+              <td>{{$item.position}}</td>
+              <td>{{$item.bib}}</td>
+              <td>{{$item.label}}</td>
+              <td>{{$item.timeLabel}}</td>
+              <td>{{$item.gapLabel}}</td>
+            </tr>
+          </pick-for>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</article>

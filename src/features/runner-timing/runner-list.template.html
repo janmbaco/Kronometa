@@ -1,0 +1,22 @@
+<section class="panel">
+  <div class="head">
+    <div>
+      <p class="eyebrow">Cronometraje</p>
+      <h2>Corredores</h2>
+    </div>
+    <span>{{runners.length}}</span>
+  </div>
+
+  <pick-select>
+    <on condition="{{runners.length > 0}}">
+      <div class="rows">
+        <pick-for items="{{runners}}" key="id">
+          <runner-row row="{{$item}}"></runner-row>
+        </pick-for>
+      </div>
+    </on>
+    <otherwise>
+      <p class="empty">Todavia no hay corredores en la sesion.</p>
+    </otherwise>
+  </pick-select>
+</section>

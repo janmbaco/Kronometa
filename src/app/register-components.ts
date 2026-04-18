@@ -1,0 +1,12 @@
+import "../features/race-mode/mode-selector.component";
+import "../features/race-controls/race-controls.component";
+import "../features/runner-registration/runner-form.component";
+import "../features/runner-timing/runner-row.component";
+import "../features/runner-timing/runner-list.component";
+import "../features/results/results-panel.component";
+import "../features/results-view/history-entry.component";
+import "../features/setup-mode/setup-mode.component";
+import "../features/runner-setup/runner-setup.component";
+import "../features/race-view/race-view.component";
+import "../features/results-view/results-view.component";
+import "../features/race-shell/kronometa-app.component";

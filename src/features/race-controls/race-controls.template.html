@@ -1,0 +1,32 @@
+<section class="panel">
+  <div class="control-head">
+    <div>
+      <p class="eyebrow">Control</p>
+      <h2>{{control.modeLabel}}</h2>
+    </div>
+    <p class="clock">{{raceClockLabel}}</p>
+  </div>
+
+  <div class="stats" aria-label="Resumen de carrera">
+    <span><strong>{{control.totalCount}}</strong> inscritos</span>
+    <span><strong>{{control.runningCount}}</strong> en carrera</span>
+    <span><strong>{{control.finishedCount}}</strong> finalizados</span>
+  </div>
+
+  <div class="actions">
+    <pick-action action="requestStartMass">
+      <button type="button" disabled="{{!control.canStartMass}}">Iniciar salida masiva</button>
+    </pick-action>
+    <pick-action action="requestUndo">
+      <button type="button" class="secondary" disabled="{{!control.canUndo}}">Deshacer</button>
+    </pick-action>
+    <pick-action action="requestExport">
+      <button type="button" class="secondary" disabled="{{!control.canExport}}">Exportar CSV histórico</button>
+    </pick-action>
+    <pick-action action="requestReset">
+      <button type="button" class="contrast">Nueva sesion</button>
+    </pick-action>
+  </div>
+
+  <small>{{feedback}}</small>
+</section>

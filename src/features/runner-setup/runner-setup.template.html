@@ -1,0 +1,24 @@
+<section class="screen">
+  <div class="intro">
+    <p class="eyebrow">Paso 2</p>
+    <h2>Inserta corredores</h2>
+    <p>{{control.statusText}}</p>
+  </div>
+
+  <footer class="actions screen-toolbar">
+    <pick-action action="requestBack">
+      <button type="button" class="secondary">Volver al modo</button>
+    </pick-action>
+    <pick-action action="requestContinue">
+      <button type="button" disabled="{{!control.canConfirmRunners}}">
+        Preparar salida
+      </button>
+    </pick-action>
+    <small role="status">{{feedback}}</small>
+  </footer>
+
+  <section class="two-column">
+    <runner-form></runner-form>
+    <runner-list runners="{{runners}}"></runner-list>
+  </section>
+</section>

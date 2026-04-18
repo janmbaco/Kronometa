@@ -1,0 +1,24 @@
+<section class="panel">
+  <div>
+    <p class="eyebrow">Corredores</p>
+    <h2>Alta manual</h2>
+  </div>
+
+  <form id="runnerForm">
+    <div class="fields">
+      <label class="field">
+        <span>Dorsal</span>
+        <input id="bibInput" name="bib" autocomplete="off" required />
+      </label>
+      <label class="field">
+        <span>Nombre o etiqueta</span>
+        <input id="labelInput" name="label" autocomplete="off" />
+      </label>
+    </div>
+    <div class="form-actions">
+      <button type="submit">Añadir corredor</button>
+    </div>
+  </form>
+
+  <small role="status">{{message}}</small>
+</section>

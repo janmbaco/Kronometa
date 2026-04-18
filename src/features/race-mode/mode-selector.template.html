@@ -1,0 +1,41 @@
+<section class="mode-panel">
+  <div class="panel-head">
+    <p class="eyebrow">Modo de carrera</p>
+    <h2>{{modeLabel}}</h2>
+  </div>
+
+  <div class="mode-options" role="group" aria-label="Tipo de salida">
+    <button
+      type="button"
+      class="{{massCardClass}}"
+      data-mode="mass_start"
+      aria-pressed="{{mode === 'mass_start'}}"
+      disabled="{{modeLocked}}"
+    >
+      <span class="mode-kicker">Una salida</span>
+      <strong>Salida masiva</strong>
+      <span>Todos los corredores comparten la misma hora de salida.</span>
+      <small>Ideal para carreras populares, mangas únicas o salidas simultáneas.</small>
+    </button>
+
+    <button
+      type="button"
+      class="{{staggeredCardClass}}"
+      data-mode="staggered_start"
+      aria-pressed="{{mode === 'staggered_start'}}"
+      disabled="{{modeLocked}}"
+    >
+      <span class="mode-kicker">Salida individual</span>
+      <strong>Salidas escalonadas</strong>
+      <span>Cada corredor recibe su propia hora de salida.</span>
+      <small>Útil para contrarreloj, tandas pequeñas o salidas ordenadas por dorsal.</small>
+    </button>
+  </div>
+
+  <label class="sr-only" for="raceMode">Tipo de salida</label>
+  <select id="raceMode" class="sr-only" disabled="{{modeLocked}}">
+    <option value="mass_start" selected="{{mode === 'mass_start'}}">Salida masiva</option>
+    <option value="staggered_start" selected="{{mode === 'staggered_start'}}">Salidas escalonadas</option>
+  </select>
+  <small>{{hint}}</small>
+</section>

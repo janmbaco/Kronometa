@@ -1,0 +1,80 @@
+<article class="{{row.rowClass}}">
+  <div class="card-main">
+    <div class="identity">
+      <small>Dorsal&nbsp;{{row.bib}}</small>
+      <strong>{{row.label}}</strong>
+      <span class="status-pill">{{row.statusLabel}}</span>
+    </div>
+
+    <div class="time">
+      <span>{{elapsedLabel}}</span>
+      <small>Salida&nbsp;{{row.referenceLabel}}</small>
+    </div>
+  </div>
+
+  <pick-select>
+    <on condition="{{showActionBar}}">
+      <div class="action-bar" aria-label="Acciones del corredor">
+        <pick-select>
+          <on condition="{{row.canStart}}">
+            <pick-action action="requestStart">
+              <button type="button" class="secondary">Salida</button>
+            </pick-action>
+          </on>
+        </pick-select>
+        <pick-select>
+          <on condition="{{row.canFinish}}">
+            <pick-action action="requestFinish">
+              <button type="button">Llegada</button>
+            </pick-action>
+          </on>
+        </pick-select>
+        <pick-select>
+          <on condition="{{showManualTimeEditAction}}">
+            <button id="manualTimeEdit" type="button" class="secondary">
+              Editar tiempo
+            </button>
+          </on>
+        </pick-select>
+        <pick-select>
+          <on condition="{{row.canDelete}}">
+            <pick-action action="requestDelete">
+              <button type="button" class="danger-ghost">Eliminar</button>
+            </pick-action>
+          </on>
+        </pick-select>
+      </div>
+    </on>
+  </pick-select>
+
+  <pick-select>
+    <on condition="{{showManualTimeForm}}">
+      <form id="manualTimeForm" class="manual-time">
+        <label>
+          Tiempo registrado
+          <input
+            id="manualTimeInput"
+            value="{{manualTimeDraft}}"
+            inputmode="decimal"
+            aria-invalid="{{manualTimeInputInvalid}}"
+          />
+        </label>
+        <small class="manual-help">{{manualTimeHelp}}</small>
+        <div class="manual-actions">
+          <button
+            id="manualTimeSave"
+            type="button"
+            disabled="{{!manualTimeCanSave}}"
+          >
+            Guardar cambios
+          </button>
+          <button id="manualTimeCancel" type="button" class="secondary">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </on>
+  </pick-select>
+
+  <small class="feedback">{{feedback}}</small>
+</article>

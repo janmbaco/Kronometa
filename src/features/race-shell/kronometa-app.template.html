@@ -1,0 +1,37 @@
+<main class="app-shell">
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Cronometraje manual de meta</p>
+      <h1>Kronometa</h1>
+    </div>
+    <p class="status">{{control.statusText}}</p>
+  </header>
+
+  <nav class="flow-steps" aria-label="Progreso de la carrera">
+    <span class="{{phase === 'select_mode' ? 'active' : ''}}">Modo</span>
+    <span class="{{phase === 'register_runners' ? 'active' : ''}}">Corredores</span>
+    <span class="{{phase === 'ready_to_start' || phase === 'running_mass' || phase === 'running_staggered' ? 'active' : ''}}">Carrera</span>
+    <span class="{{phase === 'finished' ? 'active' : ''}}">Resultados</span>
+  </nav>
+
+  <pick-router>
+    <template data-route="/">
+      <setup-mode-view></setup-mode-view>
+    </template>
+    <template data-route="/setup/mode">
+      <setup-mode-view></setup-mode-view>
+    </template>
+    <template data-route="/setup/runners">
+      <runner-setup-view></runner-setup-view>
+    </template>
+    <template data-route="/race">
+      <race-view></race-view>
+    </template>
+    <template data-route="/results">
+      <results-view></results-view>
+    </template>
+    <template data-route="*">
+      <setup-mode-view></setup-mode-view>
+    </template>
+  </pick-router>
+</main>

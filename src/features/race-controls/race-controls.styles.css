@@ -1,0 +1,142 @@
+:host {
+  display: block;
+  color-scheme: inherit;
+}
+
+.panel {
+  display: grid;
+  gap: 0.78rem;
+  padding: 0.95rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  background: var(--km-card);
+  box-shadow: var(--km-shadow-soft);
+}
+
+.control-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.eyebrow {
+  margin: 0 0 0.2rem;
+  color: var(--km-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h2,
+.clock {
+  margin: 0;
+}
+
+h2 {
+  color: var(--km-heading);
+  font-size: 1.25rem;
+}
+
+.clock {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  color: var(--km-primary-strong);
+  background: var(--km-surface-2);
+  font-family: var(--km-font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.stats,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.stats span {
+  display: inline-flex;
+  gap: 0.22rem;
+  align-items: center;
+  padding: 0.22rem 0.55rem;
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius);
+  color: var(--km-muted);
+  background: var(--km-surface-2);
+}
+
+pick-action {
+  display: contents;
+}
+
+button {
+  width: auto;
+  min-height: 2.3rem;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--km-primary);
+  border-radius: var(--km-radius);
+  background: var(--km-primary);
+  color: var(--km-on-primary);
+  font-weight: 800;
+}
+
+button.secondary {
+  color: var(--km-muted-strong);
+  background: var(--km-surface);
+  border-color: var(--km-border-strong);
+}
+
+button.contrast {
+  color: var(--km-danger);
+  background: transparent;
+  border-color: var(--km-danger);
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--km-primary-strong);
+  background: var(--km-primary-strong);
+}
+
+button.secondary:hover:not(:disabled) {
+  border-color: var(--km-primary);
+  background: var(--km-primary-softer);
+  color: var(--km-primary-strong);
+}
+
+button.contrast:hover:not(:disabled) {
+  background: var(--km-danger-soft);
+}
+
+button:disabled {
+  border-color: var(--km-border);
+  background: var(--km-disabled-bg);
+  color: var(--km-disabled-text);
+  opacity: 0.68;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--km-focus);
+  outline-offset: 2px;
+}
+
+small {
+  min-height: 1.2rem;
+  color: var(--km-muted);
+}
+
+@media (max-width: 680px) {
+  .control-head {
+    grid-template-columns: 1fr;
+  }
+
+  .clock {
+    width: fit-content;
+  }
+}

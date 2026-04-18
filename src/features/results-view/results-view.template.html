@@ -1,0 +1,55 @@
+<section class="screen">
+  <header class="results-header">
+    <div>
+      <p class="eyebrow">Paso 4</p>
+      <h2>Resultados</h2>
+      <p>{{control.statusText}}</p>
+    </div>
+    <div class="summary">
+      <span><strong>{{control.finishedCount}}</strong> finalizados</span>
+      <span><strong>{{control.totalCount}}</strong> inscritos</span>
+    </div>
+  </header>
+
+  <footer class="actions screen-toolbar">
+    <pick-action action="requestExport">
+      <button type="button" class="secondary" disabled="{{!control.canExport}}">
+        Exportar CSV histórico
+      </button>
+    </pick-action>
+    <pick-action action="requestRepeat">
+      <button type="button" disabled="{{!control.canRepeatRace}}">
+        Repetir misma carrera
+      </button>
+    </pick-action>
+    <pick-action action="requestReset">
+      <button type="button" class="contrast">Nueva carrera</button>
+    </pick-action>
+    <small role="status">{{feedback}}</small>
+  </footer>
+
+  <results-panel results="{{results}}"></results-panel>
+
+  <section class="history-panel" aria-labelledby="history-title">
+    <header class="history-head">
+      <div>
+        <p class="eyebrow">Historico</p>
+        <h3 id="history-title">Carreras guardadas</h3>
+      </div>
+      <span>{{historyCountLabel}}</span>
+    </header>
+
+    <pick-select>
+      <on condition="{{history.length > 0}}">
+        <div class="history-list">
+          <pick-for items="{{history}}" key="id">
+            <history-entry entry="{{$item}}"></history-entry>
+          </pick-for>
+        </div>
+      </on>
+      <otherwise>
+        <p class="empty">El historico aparecera al cerrar la primera carrera.</p>
+      </otherwise>
+    </pick-select>
+  </section>
+</section>

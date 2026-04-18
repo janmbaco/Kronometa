@@ -1,0 +1,137 @@
+<section class="screen">
+  <header class="race-header">
+    <div>
+      <p class="eyebrow">Paso 3</p>
+      <h2>{{control.modeLabel}}</h2>
+      <p>{{control.statusText}}</p>
+    </div>
+    <p class="clock">{{raceClockLabel}}</p>
+  </header>
+
+  <div class="stats" aria-label="Resumen de carrera">
+    <span><strong>{{control.totalCount}}</strong> inscritos</span>
+    <span><strong>{{control.pendingCount}}</strong> pendientes</span>
+    <span><strong>{{control.runningCount}}</strong> en carrera</span>
+    <span><strong>{{control.finishedCount}}</strong> finalizados</span>
+  </div>
+
+  <div class="actions">
+    <pick-select>
+      <on condition="{{isMassMode}}">
+        <pick-action action="requestStartMass">
+          <button type="button" disabled="{{!control.canStartMass}}">
+            Iniciar salida masiva
+          </button>
+        </pick-action>
+      </on>
+    </pick-select>
+    <pick-action action="requestBack">
+      <button type="button" class="secondary" disabled="{{!control.canGoBackToRunners}}">
+        Editar corredores
+      </button>
+    </pick-action>
+    <pick-action action="requestUndo">
+      <button type="button" class="secondary" disabled="{{!control.canUndo}}">
+        Deshacer
+      </button>
+    </pick-action>
+    <small>{{feedback}}</small>
+  </div>
+
+  <pick-select>
+    <on condition="{{isMassMode}}">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Salida masiva</p>
+            <h3>Todos comparten hora de salida</h3>
+          </div>
+        </div>
+        <runner-list runners="{{runners}}"></runner-list>
+      </section>
+    </on>
+    <otherwise>
+      <section class="staggered-board">
+        <article class="next-card">
+          <p class="eyebrow">Siguiente salida</p>
+          <pick-select>
+            <on condition="{{hasNextRunner}}">
+              <div class="next-runner">
+                <strong>{{nextRunner.bib}}</strong>
+                <span>{{nextRunner.label}}</span>
+              </div>
+              <div class="next-actions">
+                <pick-action action="requestStartNext">
+                  <button type="button">Dar salida al siguiente</button>
+                </pick-action>
+              </div>
+            </on>
+            <otherwise>
+              <p class="empty">No quedan corredores pendientes de salida.</p>
+            </otherwise>
+          </pick-select>
+        </article>
+
+        <section class="race-column pending-column">
+          <div class="section-head">
+            <h3>Pendientes de salida</h3>
+            <span>{{pendingRunners.length}}</span>
+          </div>
+          <pick-select>
+            <on condition="{{hasWaitingRunners}}">
+              <div class="queue">
+                <pick-for items="{{waitingRunners}}" key="id">
+                  <div class="queue-row">
+                    <strong>{{$item.bib}}</strong>
+                    <span>{{$item.label}}</span>
+                  </div>
+                </pick-for>
+              </div>
+            </on>
+            <otherwise>
+              <p class="empty">La cola de salida esta vacia.</p>
+            </otherwise>
+          </pick-select>
+        </section>
+
+        <section class="race-column running-column">
+          <div class="section-head">
+            <h3>En carrera</h3>
+            <span>{{runningRunners.length}}</span>
+          </div>
+          <pick-select>
+            <on condition="{{hasRunningRunners}}">
+              <div class="rows">
+                <pick-for items="{{runningRunners}}" key="id">
+                  <runner-row row="{{$item}}"></runner-row>
+                </pick-for>
+              </div>
+            </on>
+            <otherwise>
+              <p class="empty">Aun no hay corredores en carrera.</p>
+            </otherwise>
+          </pick-select>
+        </section>
+
+        <section class="race-column finished-column">
+          <div class="section-head">
+            <h3>Finalizados</h3>
+            <span>{{finishedRunners.length}}</span>
+          </div>
+          <pick-select>
+            <on condition="{{hasFinishedRunners}}">
+              <div class="rows">
+                <pick-for items="{{finishedRunners}}" key="id">
+                  <runner-row row="{{$item}}"></runner-row>
+                </pick-for>
+              </div>
+            </on>
+            <otherwise>
+              <p class="empty">Las llegadas apareceran aqui.</p>
+            </otherwise>
+          </pick-select>
+        </section>
+      </section>
+    </otherwise>
+  </pick-select>
+</section>

@@ -1,0 +1,41 @@
+<section class="panel">
+  <div class="head">
+    <div>
+      <p class="eyebrow">Clasificacion</p>
+      <h2>Resultados</h2>
+    </div>
+    <span>{{results.length}}</span>
+  </div>
+
+  <pick-select>
+    <on condition="{{results.length > 0}}">
+      <div class="table-scroll">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th scope="col">Pos.</th>
+              <th scope="col">Dorsal</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Tiempo</th>
+              <th scope="col">Diferencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <pick-for items="{{results}}" key="runnerId">
+              <tr class="{{$item.rowClass}}">
+                <td>{{$item.position}}</td>
+                <td>{{$item.bib}}</td>
+                <td>{{$item.label}}</td>
+                <td>{{$item.timeLabel}}</td>
+                <td>{{$item.gapLabel}}</td>
+              </tr>
+            </pick-for>
+          </tbody>
+        </table>
+      </div>
+    </on>
+    <otherwise>
+      <p class="empty">La clasificacion aparecera al registrar llegadas.</p>
+    </otherwise>
+  </pick-select>
+</section>
