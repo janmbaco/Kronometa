@@ -11,6 +11,10 @@ export class InjectKitServicesAdapter implements IServiceRegistry {
   private registry: Registry = createRegistry();
   private container: Container | null = null;
 
+  buildContainer(): void {
+    this.container ??= this.registry.build({ autoRegisterDecorated: true });
+  }
+
   register<T>(token: ServiceToken<T>, instanceOrFactory: T | (() => T)): void {
     this.assertCanRegister(token);
 
@@ -32,8 +36,7 @@ export class InjectKitServicesAdapter implements IServiceRegistry {
   }
 
   get<T>(token: ServiceToken<T>): T {
-    this.container ??= this.registry.build({ autoRegisterDecorated: true });
-    return this.container.get(this.toInjectKitToken(token));
+    return this.getBuiltContainer(token).get(this.toInjectKitToken(token));
   }
 
   has(token: ServiceToken): boolean {
@@ -56,7 +59,19 @@ export class InjectKitServicesAdapter implements IServiceRegistry {
     throw new Error(
       `[InjectKitServicesAdapter] Cannot register '${this.formatToken(
         token,
-      )}' after the InjectKit container has been built.`,
+      )}' after the InjectKit container has been initialized.`,
+    );
+  }
+
+  private getBuiltContainer(token: ServiceToken): Container {
+    if (this.container) {
+      return this.container;
+    }
+
+    throw new Error(
+      `[InjectKitServicesAdapter] Cannot resolve '${this.formatToken(
+        token,
+      )}' before the InjectKit container has been initialized.`,
     );
   }
 

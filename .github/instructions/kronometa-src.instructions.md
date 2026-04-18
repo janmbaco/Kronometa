@@ -45,6 +45,7 @@ applyTo: "src/**"
 - For delegated `@Listen(selector, event)` handlers, derive the matched element from `event.target.closest(...)`.
 - App services use `@janmbaco/injectkit` decorators. Prefer `@Singleton()` for domain/app services and `@Transient({ deps: [...] })` for initializers/lifecycle managers.
 - Keep `src/app/app-injectables.ts` aligned when adding a new decorated service, initializer, or lifecycle manager.
+- Keep InjectKit container initialization explicit in `src/main.ts`; `Services.get(...)` should resolve only, not build the container.
 
 ## Styling and UI
 

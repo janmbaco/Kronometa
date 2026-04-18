@@ -30,7 +30,7 @@ These instructions apply to the whole repository. Keep changes pragmatic, browse
 - Follow existing PickComponents patterns for `@Pick`, `@PickRender`, `@Reactive`, `@Listen`, `pick-for`, `pick-select`, and `pick-action`.
 - Keep listener handlers compatible with delegated selector listeners: do not assume `event.currentTarget` is the matched element. Use `event.target` and `closest(...)` when needed.
 - Do not add manual application service registration unless a new integration genuinely cannot be represented with InjectKit decorators.
-- Preserve bootstrap ordering in `src/main.ts`: install `InjectKitServicesAdapter`, load `app-injectables`, bootstrap framework, then import/register components.
+- Preserve bootstrap ordering in `src/main.ts`: install `InjectKitServicesAdapter`, load `app-injectables`, bootstrap framework, initialize the InjectKit container, then import/register components.
 - Do not create hidden service dependencies in components.
 
 ## Code Style
