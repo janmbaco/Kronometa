@@ -389,6 +389,12 @@ export class RaceService {
     });
   }
 
+  clearLocalData(): void {
+    this.storage.clear();
+    this.state = createInitialRaceState();
+    this.listeners.forEach((listener) => listener(this.getSnapshot()));
+  }
+
   private canEditConfiguration(): boolean {
     return (
       this.state.phase === "select_mode" ||

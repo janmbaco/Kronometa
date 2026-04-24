@@ -49,6 +49,7 @@ export class ResultsViewComponent extends PickComponent {
   readonly exportRequested$ = this.createIntent();
   readonly repeatRequested$ = this.createIntent();
   readonly resetRequested$ = this.createIntent();
+  readonly clearLocalDataRequested$ = this.createIntent();
 
   requestExport(): void {
     this.exportRequested$.notify();
@@ -66,6 +67,17 @@ export class ResultsViewComponent extends PickComponent {
       );
     if (confirmed) {
       this.resetRequested$.notify();
+    }
+  }
+
+  requestClearLocalData(): void {
+    const confirmed =
+      typeof window === "undefined" ||
+      window.confirm(
+        "¿Borrar todos los datos locales de Kronometa? Se eliminaran la carrera actual y el historico guardado en este navegador.",
+      );
+    if (confirmed) {
+      this.clearLocalDataRequested$.notify();
     }
   }
 }

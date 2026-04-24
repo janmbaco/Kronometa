@@ -36,6 +36,24 @@ export class KronometaAppLifecycle extends PickLifecycleManager<KronometaAppComp
       }),
     );
     this.addSubscription(this.routingService.subscribe(syncRoute));
+    this.addSubscription(
+      component.modeStepRequested$.subscribe(() => {
+        try {
+          this.raceService.backToModeSelection();
+        } catch {
+          syncRoute();
+        }
+      }),
+    );
+    this.addSubscription(
+      component.runnersStepRequested$.subscribe(() => {
+        try {
+          this.raceService.backToRunnerSetup();
+        } catch {
+          syncRoute();
+        }
+      }),
+    );
     syncRoute();
   }
 }

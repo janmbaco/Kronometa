@@ -7,12 +7,31 @@
     <p class="status">{{control.statusText}}</p>
   </header>
 
-  <nav class="flow-steps" aria-label="Progreso de la carrera">
-    <span class="{{phase === 'select_mode' ? 'active' : ''}}">Modo</span>
-    <span class="{{phase === 'register_runners' ? 'active' : ''}}">Corredores</span>
-    <span class="{{phase === 'ready_to_start' || phase === 'running_mass' || phase === 'running_staggered' ? 'active' : ''}}">Carrera</span>
-    <span class="{{phase === 'finished' ? 'active' : ''}}">Resultados</span>
-  </nav>
+  <div class="flow-steps" aria-label="Estado de la carrera">
+    <pick-action action="requestModeStep">
+      <button type="button" class="{{phase === 'select_mode' ? 'active' : ''}}" disabled="{{!canGoToMode}}" aria-current="{{phase === 'select_mode' ? 'step' : 'false'}}">Modo de salida</button>
+    </pick-action>
+    <pick-select>
+      <on condition="{{showRunnersStep}}">
+        <span class="flow-separator" aria-hidden="true">&gt;</span>
+        <pick-action action="requestRunnersStep">
+          <button type="button" class="{{phase === 'register_runners' ? 'active' : ''}}" disabled="{{!canGoToRunners}}" aria-current="{{phase === 'register_runners' ? 'step' : 'false'}}">Registro de corredores</button>
+        </pick-action>
+      </on>
+    </pick-select>
+    <pick-select>
+      <on condition="{{showRaceStep}}">
+        <span class="flow-separator" aria-hidden="true">&gt;</span>
+        <button type="button" class="{{phase === 'ready_to_start' || phase === 'running_mass' || phase === 'running_staggered' ? 'active' : ''}}" disabled="true" aria-current="{{phase === 'ready_to_start' || phase === 'running_mass' || phase === 'running_staggered' ? 'step' : 'false'}}">Carrera en curso</button>
+      </on>
+    </pick-select>
+    <pick-select>
+      <on condition="{{showResultsStep}}">
+        <span class="flow-separator" aria-hidden="true">&gt;</span>
+        <button type="button" class="{{phase === 'finished' ? 'active' : ''}}" disabled="true" aria-current="{{phase === 'finished' ? 'step' : 'false'}}">Resultados</button>
+      </on>
+    </pick-select>
+  </div>
 
   <pick-router>
     <template data-route="/">

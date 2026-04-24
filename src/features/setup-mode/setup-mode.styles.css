@@ -6,13 +6,17 @@
 .screen {
   display: grid;
   max-width: 920px;
-  gap: 0.95rem;
+  gap: 1.5rem;
 }
 
 .intro,
 .actions {
   display: grid;
   gap: 0.5rem;
+}
+
+.intro {
+  gap: 0.65rem;
 }
 
 .intro {

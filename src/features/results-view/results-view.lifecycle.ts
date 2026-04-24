@@ -71,6 +71,16 @@ export class ResultsViewLifecycle extends PickLifecycleManager<ResultsViewCompon
         );
       }),
     );
+
+    this.addSubscription(
+      component.clearLocalDataRequested$.subscribe(() => {
+        this.run(
+          component,
+          () => this.raceService.clearLocalData(),
+          "Datos locales borrados.",
+        );
+      }),
+    );
   }
 
   private run(

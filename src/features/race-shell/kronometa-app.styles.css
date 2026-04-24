@@ -50,41 +50,73 @@ h1 {
 }
 
 .flow-steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.28rem;
-  margin-top: 1rem;
-  padding: 0.35rem;
-  border: 1px solid var(--km-border);
-  border-radius: var(--km-radius);
-  background: var(--km-surface-2);
-}
-
-.flow-steps span {
-  display: inline-flex;
-  min-height: 2.2rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0.35rem 0.6rem;
-  border: 1px solid transparent;
-  border-radius: var(--km-radius-sm);
-  background: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.24rem 0.45rem;
+  align-items: baseline;
+  margin: 1rem 0 1rem;
+  padding: 0;
   color: var(--km-muted);
   font-size: 0.84rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
-.flow-steps span.active {
-  border-color: var(--km-primary);
-  background: var(--km-card-selected);
+pick-action,
+pick-select {
+  display: contents;
+}
+
+.flow-separator {
+  color: var(--km-border-strong);
+}
+
+.flow-steps button {
+  width: auto;
+  min-height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--km-muted);
+  font: inherit;
+  text-align: left;
+}
+
+.flow-steps button:not(:disabled) {
+  color: var(--km-muted-strong);
+  cursor: pointer;
+}
+
+.flow-steps button:not(:disabled):hover {
   color: var(--km-primary-strong);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--km-primary) 18%, transparent);
+  text-decoration: underline;
+  text-decoration-thickness: 0.12rem;
+  text-underline-offset: 0.28rem;
+}
+
+.flow-steps button.active {
+  color: var(--km-primary-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--km-primary);
+  text-decoration-thickness: 0.16rem;
+  text-underline-offset: 0.28rem;
+}
+
+.flow-steps button:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.flow-steps button:focus-visible {
+  outline: 3px solid var(--km-focus);
+  outline-offset: 0.2rem;
 }
 
 pick-router {
   display: block;
   min-width: 0;
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .router-outlet {
@@ -116,6 +148,6 @@ pick-router {
   }
 
   .flow-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: 0.8rem;
   }
 }

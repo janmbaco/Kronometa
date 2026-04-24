@@ -68,6 +68,14 @@
   align-items: start;
 }
 
+.history-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .history-list {
   display: grid;
   gap: 0.7rem;
@@ -143,6 +151,14 @@ button.contrast {
   border-color: var(--km-danger);
 }
 
+button.text-danger {
+  min-height: auto;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--km-danger);
+}
+
 button:hover:not(:disabled) {
   border-color: var(--km-primary-strong);
   background: var(--km-primary-strong);
@@ -156,6 +172,14 @@ button.secondary:hover:not(:disabled) {
 
 button.contrast:hover:not(:disabled) {
   background: var(--km-danger-soft);
+}
+
+button.text-danger:hover:not(:disabled) {
+  border-color: transparent;
+  background: transparent;
+  color: var(--km-danger);
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
 }
 
 button:disabled {

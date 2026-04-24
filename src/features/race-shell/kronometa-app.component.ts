@@ -57,16 +57,41 @@ export class KronometaAppComponent extends PickComponent {
   @Reactive phase: RacePhase = "select_mode";
   @Reactive mode: RaceMode = "mass_start";
   @Reactive canchange = "true";
+  @Reactive canGoToMode = false;
+  @Reactive canGoToRunners = false;
+  @Reactive showRunnersStep = false;
+  @Reactive showRaceStep = false;
+  @Reactive showResultsStep = false;
   @Reactive control: RaceControlView = EMPTY_CONTROL;
   @Reactive runners: RunnerRowView[] = [];
   @Reactive results: ResultRowView[] = [];
+  readonly modeStepRequested$ = this.createIntent();
+  readonly runnersStepRequested$ = this.createIntent();
 
   hydrate(state: RaceState, now: number): void {
     this.phase = state.phase;
     this.mode = state.config.mode;
     this.canchange = String(canChangeRaceMode(state));
+    this.canGoToMode =
+      state.phase === "register_runners" || state.phase === "ready_to_start";
+    this.canGoToRunners = state.phase === "ready_to_start";
+    this.showRunnersStep = state.phase !== "select_mode";
+    this.showRaceStep =
+      state.phase === "ready_to_start" ||
+      state.phase === "running_mass" ||
+      state.phase === "running_staggered" ||
+      state.phase === "finished";
+    this.showResultsStep = state.phase === "finished";
     this.control = getRaceControlView(state, now);
     this.runners = getRunnerRowViews(state, now);
     this.results = getResultRowViews(state);
+  }
+
+  requestModeStep(): void {
+    this.modeStepRequested$.notify();
+  }
+
+  requestRunnersStep(): void {
+    this.runnersStepRequested$.notify();
   }
 }

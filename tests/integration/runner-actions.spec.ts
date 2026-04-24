@@ -175,6 +175,100 @@ test.describe("flujo guiado de cronometraje", () => {
     await addRunner(page, "1");
     await expect(setup.locator("runner-row")).toHaveCount(2);
   });
+
+  test("permite volver hacia atras desde el breadcrumb solo antes de iniciar", async ({
+    page,
+  }) => {
+    await expect(
+      page.getByRole("button", { name: "Modo de salida", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", {
+        name: "Registro de corredores",
+        exact: true,
+      }),
+    ).toHaveCount(0);
+
+    await chooseMode(page, "mass_start");
+    await expect(
+      page.getByRole("button", {
+        name: "Registro de corredores",
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Carrera en curso", exact: true }),
+    ).toHaveCount(0);
+
+    await addRunner(page, "1");
+
+    await page
+      .getByRole("button", { name: "Modo de salida", exact: true })
+      .click();
+    await expect(page).toHaveURL(/\/setup\/mode$/);
+
+    await page.getByRole("button", { name: "Continuar con corredores" }).click();
+    await expect(page).toHaveURL(/\/setup\/runners$/);
+    await prepareRace(page);
+    await expect(
+      page.getByRole("button", { name: "Carrera en curso", exact: true }),
+    ).toBeVisible();
+
+    await page
+      .getByRole("button", { name: "Modo de salida", exact: true })
+      .click();
+    await expect(page).toHaveURL(/\/setup\/mode$/);
+    await page.getByRole("button", { name: "Continuar con corredores" }).click();
+    await expect(page).toHaveURL(/\/setup\/runners$/);
+    await prepareRace(page);
+
+    await page
+      .getByRole("button", { name: "Registro de corredores", exact: true })
+      .click();
+    await expect(page).toHaveURL(/\/setup\/runners$/);
+    await prepareRace(page);
+
+    await page.getByRole("button", { name: "Iniciar salida masiva" }).click();
+    await expect(
+      page.getByRole("button", { name: "Modo de salida", exact: true }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", {
+        name: "Registro de corredores",
+        exact: true,
+      }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: "Carrera en curso", exact: true }),
+    ).toBeDisabled();
+  });
+
+  test("borra todos los datos locales desde el historico", async ({ page }) => {
+    await chooseMode(page, "mass_start");
+    await addRunner(page, "1");
+    await prepareRace(page);
+
+    const race = page.locator("race-view");
+    await race.getByRole("button", { name: "Iniciar salida masiva" }).click();
+    await race
+      .locator("runner-row")
+      .first()
+      .getByRole("button", { name: "Llegada" })
+      .click();
+
+    await expect(page).toHaveURL(/\/results$/);
+    await expect(page.locator("results-view .history-card")).toHaveCount(1);
+    await expect(
+      page.evaluate(() => window.localStorage.length),
+    ).resolves.toBeGreaterThan(0);
+
+    page.once("dialog", (dialog) => dialog.accept());
+    await page.getByRole("button", { name: "Borrar datos locales" }).click();
+
+    await expect(page).toHaveURL(/\/setup\/mode$/);
+    await expect(page.locator("results-view")).toHaveCount(0);
+    await expect(page.evaluate(() => window.localStorage.length)).resolves.toBe(0);
+  });
 });
 
 async function chooseMode(page: Page, mode: "mass_start" | "staggered_start") {

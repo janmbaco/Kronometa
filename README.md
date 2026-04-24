@@ -1,28 +1,38 @@
 # Kronometa
 
-Kronometa es una aplicacion web para cronometrar manualmente carreras sencillas
-desde el navegador.
+Kronometa es una aplicación web para cronometrar manualmente carreras sencillas desde el navegador.
 
-Esta pensada para pruebas en las que una persona registra salidas y llegadas en
-meta, sin equipamiento adicional y sin servidor propio.
+Está pensada para pruebas en las que una persona registra salidas y llegadas en meta, sin equipamiento adicional y sin servidor propio.
+
+## Interfaz y arquitectura
+
+La interfaz está construida con [PickComponents](https://github.com/janmbaco/PickComponents), usado aquí como framework de componentes web. Kronometa no organiza la pantalla como una página con enlaces libres, sino como una máquina de estados de carrera: elegir modo, cargar corredores, preparar salida, cronometrar y revisar resultados.
+
+El componente raíz `kronometa-app` mantiene el shell visual, el estado global visible y el router. Cada pantalla del flujo (`setup-mode-view`, `runner-setup-view`, `race-view`, `results-view`) se hidrata desde `RaceService` mediante lifecycles de PickComponents. Los componentes pequeños (`runner-form`, `runner-row`, `race-controls`, `results-panel`) no deciden la fase de la carrera: emiten intenciones de usuario y el servicio aplica las reglas del dominio.
+
+La navegación superior es un breadcrumb de estado que va revelando fases a medida que la carrera avanza. Solo permite volver a fases anteriores cuando la máquina lo permite; durante el cronometraje queda como lectura pasiva para evitar saltos accidentales.
+
+Más detalle:
+
+- [Arquitectura de interfaz](docs/interface-architecture.md)
 
 ## Funcionalidades
 
 - Salida masiva para todos los corredores.
 - Salidas individuales o escalonadas.
 - Registro manual de llegadas.
-- Deshacer la ultima accion de cronometraje.
-- Edicion manual de tiempos finalizados.
-- Clasificacion automatica por mejor tiempo.
-- Historico local de carreras.
-- Exportacion del historico a CSV.
+- Deshacer la última acción de cronometraje.
+- Edición manual de tiempos finalizados.
+- Clasificación automática por mejor tiempo.
+- Histórico local de carreras.
+- Exportación del histórico a CSV.
 
 ## Requisitos
 
 - Node.js 22 o superior.
 - npm 10 o superior.
 
-## Instalacion
+## Instalación
 
 ```bash
 npm install
@@ -36,7 +46,7 @@ Arrancar el servidor local:
 npm run dev
 ```
 
-Vite mostrara una URL local, normalmente:
+Vite mostrará una URL local, normalmente:
 
 ```text
 http://localhost:5173/
@@ -50,7 +60,7 @@ Validar TypeScript:
 npm run typecheck
 ```
 
-Compilar la aplicacion:
+Compilar la aplicación:
 
 ```bash
 npm run build
@@ -62,7 +72,7 @@ Previsualizar la build:
 npm run preview
 ```
 
-Ejecutar pruebas de integracion en Firefox:
+Ejecutar pruebas de integración en Firefox:
 
 ```bash
 npx playwright install firefox
@@ -75,28 +85,27 @@ Ejecutar todos los navegadores configurados:
 npm run test:integration:all
 ```
 
-## Uso basico
+## Uso básico
 
 1. Elegir el tipo de salida: masiva o escalonada.
-2. Anadir corredores con dorsal y nombre.
+2. Añadir corredores con dorsal y nombre.
 3. Preparar la carrera.
 4. Iniciar la salida o dar salida al siguiente corredor.
 5. Marcar cada llegada.
-6. Revisar la clasificacion.
-7. Repetir la carrera, empezar una nueva o exportar el historico.
+6. Revisar la clasificación.
+7. Repetir la carrera, empezar una nueva o exportar el histórico.
 
 ## Datos
 
-Kronometa guarda la sesion y el historico en `localStorage`.
+Kronometa guarda la sesión y el histórico en `localStorage`.
 
-Los datos permanecen en el navegador donde se usa la app. Si se borra el
-almacenamiento del navegador, tambien se borra el historico local.
+Los datos permanecen en el navegador donde se usa la app. Si se borra el almacenamiento del navegador, también se borra el histórico local.
 
-## Tecnologias
+## Tecnologías
 
 - TypeScript
 - Vite
-- PickComponents
+- [PickComponents](https://github.com/janmbaco/PickComponents), como framework de componentes web
 - InjectKit
 - Playwright
 

@@ -1,7 +1,6 @@
 <section class="screen">
   <header class="results-header">
     <div>
-      <p class="eyebrow">Paso 4</p>
       <h2>Resultados</h2>
       <p>{{control.statusText}}</p>
     </div>
@@ -36,7 +35,12 @@
         <p class="eyebrow">Historico</p>
         <h3 id="history-title">Carreras guardadas</h3>
       </div>
-      <span>{{historyCountLabel}}</span>
+      <div class="history-actions">
+        <span>{{historyCountLabel}}</span>
+        <pick-action action="requestClearLocalData">
+          <button type="button" class="text-danger">Borrar datos locales</button>
+        </pick-action>
+      </div>
     </header>
 
     <pick-select>

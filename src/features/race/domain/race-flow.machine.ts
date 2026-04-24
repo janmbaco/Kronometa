@@ -28,6 +28,7 @@ const TRANSITIONS: Record<RacePhase, Partial<Record<RaceFlowEvent, RacePhase>>> 
   },
   ready_to_start: {
     runners_changed: "register_runners",
+    back_to_mode: "select_mode",
     back_to_runners: "register_runners",
     mass_started: "running_mass",
     runner_started: "running_staggered",
