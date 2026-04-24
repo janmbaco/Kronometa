@@ -1,5 +1,5 @@
 import { Singleton } from "@janmbaco/injectkit";
-import { navigate } from "pick-components";
+import { getCurrentPath, navigate } from "pick-components";
 
 export type RouteListener = (path: string) => void;
 
@@ -13,7 +13,7 @@ export class KronometaRoutingService {
       return "/";
     }
 
-    return window.location.pathname;
+    return getCurrentPath();
   }
 
   navigateTo(path: string, options: { replace?: boolean } = {}): void {
@@ -30,7 +30,7 @@ export class KronometaRoutingService {
     }
 
     const onPopState = () => {
-      listener(window.location.pathname);
+      listener(getCurrentPath());
     };
 
     window.addEventListener("popstate", onPopState);

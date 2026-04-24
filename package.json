@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@janmbaco/injectkit": "1.2.0-jan.1",
-    "pick-components": "1.0.0-rc.0"
+    "pick-components": "^1.0.1"
   },
   "devDependencies": {
     "@playwright/test": "1.59.1",
